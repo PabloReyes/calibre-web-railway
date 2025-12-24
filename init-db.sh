@@ -7,9 +7,9 @@ mkdir -p /data/books /data/config
 # This allows using a single volume at /data while maintaining compatibility with the base image
 if [ ! -L /config ]; then
     # If /config exists and is not a symlink, back it up
-    if [ -d /config ] && [ ! -L /config ]; then
+    if [ -e /config ]; then
         echo "Backing up existing /config directory..."
-        cp -rp /config/* /data/config/ 2>/dev/null || true
+        cp -rp /config/. /data/config/ 2>/dev/null || true
         rm -rf /config
     fi
     ln -sf /data/config /config
@@ -18,9 +18,9 @@ fi
 
 if [ ! -L /books ]; then
     # If /books exists and is not a symlink, back it up
-    if [ -d /books ] && [ ! -L /books ]; then
+    if [ -e /books ]; then
         echo "Backing up existing /books directory..."
-        cp -rp /books/* /data/books/ 2>/dev/null || true
+        cp -rp /books/. /data/books/ 2>/dev/null || true
         rm -rf /books
     fi
     ln -sf /data/books /books
