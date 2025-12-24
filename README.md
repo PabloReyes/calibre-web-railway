@@ -21,16 +21,13 @@ This template uses the official [linuxserver/calibre-web](https://hub.docker.com
 2. Create a new project on Railway
 3. Connect your forked repository
 4. Add a volume:
-   - Mount path: `/books`
-   - This will store your Calibre library and metadata
-5. Add another volume:
-   - Mount path: `/config`
-   - This will store Calibre-Web configuration
-6. Set environment variables (optional):
+   - Mount path: `/data`
+   - This will store both your Calibre library (in `/data/books`) and configuration (in `/data/config`)
+5. Set environment variables (optional):
    - `PUID=1000` (User ID for file permissions)
    - `PGID=1000` (Group ID for file permissions)
    - `TZ=America/New_York` (Your timezone)
-7. Deploy!
+6. Deploy!
 
 ## Initial Setup
 
@@ -41,7 +38,7 @@ After deployment:
    - Username: `admin`
    - Password: `admin123`
 3. **Important:** Change the default password immediately after first login
-4. The database location is pre-configured to `/books` (you don't need to change this)
+4. The database location is pre-configured to `/data/books` (you don't need to change this)
 5. Configure additional settings in the Admin panel
 
 ## Configuration
@@ -58,15 +55,16 @@ After deployment:
 
 ### Volumes
 
-- `/books` - Calibre library location (contains metadata.db and eBooks)
-- `/config` - Calibre-Web application configuration and database
+Railway supports one volume per service. This template uses a single volume mounted at `/data` with the following structure:
+- `/data/books` - Calibre library location (contains metadata.db and eBooks)
+- `/data/config` - Calibre-Web application configuration and database
 
 ## Adding Books
 
 To add books to your library:
 
 1. Upload books through the Calibre-Web interface (Admin > Upload)
-2. Or use Calibre Desktop application to manage your library and sync the files to your `/books` volume
+2. Or use Calibre Desktop application to manage your library and sync the files to your `/data/books` directory
 
 ## Features of Calibre-Web
 
@@ -85,7 +83,7 @@ To add books to your library:
 
 This template automatically creates an empty metadata.db file, so you shouldn't see this error. If you do:
 
-1. Check that the `/books` volume is properly mounted
+1. Check that the `/data` volume is properly mounted
 2. Verify file permissions are correct
 3. Check the logs for initialization script output
 
@@ -95,7 +93,7 @@ Railway automatically exposes port 8083 (Calibre-Web's default port). You don't 
 
 ### Persistent Storage
 
-Make sure you've added the required volumes (`/books` and `/config`) in Railway's volume settings. Without these, your data will be lost on redeployment.
+Make sure you've added the required volume (`/data`) in Railway's volume settings. Without this, your data will be lost on redeployment.
 
 ## Resources
 
