@@ -13,8 +13,7 @@ This template uses the official [linuxserver/calibre-web](https://hub.docker.com
 - ⚙️ Pre-configured for Railway environment
 
 ## Deploy to Railway
-
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/calibre-web)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/-cajrM?referralCode=Xe9tG4&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
 ## Manual Deployment
 
