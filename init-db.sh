@@ -13,7 +13,13 @@ if [ ! -f /books/metadata.db ]; then
         
         # Set proper permissions
         chmod 664 /books/metadata.db
-        chown abc:abc /books/metadata.db 2>/dev/null || true
+        # Try to set ownership to abc:abc (linuxserver default user)
+        # This may fail in some environments, but the file will still be readable
+        if chown abc:abc /books/metadata.db 2>/dev/null; then
+            echo "  Set ownership to abc:abc"
+        else
+            echo "  Note: Could not change ownership to abc:abc (may require elevated permissions)"
+        fi
         
         echo "✓ Empty Calibre database initialized successfully at /books/metadata.db"
     else

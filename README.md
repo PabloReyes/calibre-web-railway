@@ -2,12 +2,12 @@
 
 A Railway deployment template for [Calibre-Web](https://github.com/janeczku/calibre-web), a web application for managing and reading eBooks from your Calibre library.
 
-This template uses the official [linuxserver/calibre-web](https://hub.docker.com/r/linuxserver/calibre-web) Docker image and automatically initializes an empty Calibre database to prevent the common "DB location is not valid" error.
+This template uses the official [linuxserver/calibre-web](https://hub.docker.com/r/linuxserver/calibre-web) Docker image and automatically initializes an empty Calibre database from the [official calibre-web repository](https://github.com/janeczku/calibre-web) to prevent the common "DB location is not valid" error.
 
 ## Features
 
 - 🚀 One-click deployment to Railway
-- 📚 Automatic empty Calibre database initialization
+- 📚 Automatic empty Calibre database initialization using official template
 - 🐳 Uses official linuxserver/calibre-web Docker image
 - 🔒 Persistent storage via Railway volumes
 - ⚙️ Pre-configured for Railway environment
